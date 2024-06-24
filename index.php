@@ -5,7 +5,17 @@ class Movie {
     public $genere;
     public $anno;
 
+public function namGen() {
+    return "$this->nome $this->genere";
 }
+
+public function annata() {
+    return "Il film è uscito nell'anno $this->anno";
+}
+
+}
+
+
 
 $first = new Movie();
 $first->nome = "First";
@@ -22,11 +32,9 @@ $third->nome = "Third";
 $third->genere = "Adventure";
 $third->anno = 2005;
 
+$movies = [$first, $second, $third];
+
 ?>
-
-
-
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -37,11 +45,12 @@ $third->anno = 2005;
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <ul>
-    <li><?= "$first->nome $first->genere $first->anno" ?></li>
-    <li><?= "$second->nome $second->genere $second->anno" ?></li>
-    <li><?= "$third->nome $third->genere $third->anno" ?></li>
+   
+<ul>
+    <?php foreach($movies as $film) { ?>
+      <li><?= $film->namGen()." " .$film->annata()  ?></li>
+    <?php } ?>
+</ul>
 
-    </ul>
 </body>
 </html>
